@@ -32,6 +32,10 @@ public class Categoria {
 	
 	@UpdateTimestamp
 	private LocalDateTime data;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "categoria", cascade = CascadeType.REMOVE)
+	@JsonIgnoreProperties("categoria")
+	private List<Categoria> cat;
 
     public Long getId() {
         return this.id;
@@ -56,6 +60,14 @@ public class Categoria {
     public void setData(LocalDateTime data) {
         this.data = data;
     }
+
+	public List<Categoria> getCat() {
+		return cat;
+	}
+
+	public void setCat(List<Categoria> cat) {
+		this.cat = cat;
+	}
     
   
 }
